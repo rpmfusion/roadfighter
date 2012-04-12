@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Konami's Road Fighter remake
 
 Group:          Amusements/Games
@@ -101,6 +101,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.0.1269-5
+- Rebuilt
+
 * Thu Mar 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.0.1269-4
 - Rebuilt for c++ ABI breakage
 
