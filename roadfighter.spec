@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Konami's Road Fighter remake
 
 Group:          Amusements/Games
@@ -101,6 +101,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Mar 12 2013 Nicolas Chauvet <kwizart@gmail.com> - 1.0.1269-6
+- https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Thu Apr 12 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.0.1269-5
 - Rebuilt
 
