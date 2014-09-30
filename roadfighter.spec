@@ -1,16 +1,15 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Konami's Road Fighter remake
 
-Group:          Amusements/Games
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
 License:        Distributable
 URL:            http://roadfighter.jorito.net/
 Source0:        http://braingames.jorito.net/roadfighter/downloads/%{name}.src_%{version}.tgz
 Source1:        roadfighter.sh
-Patch0:         %{name}-1.0.1269-Makefile.patch 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Patch0:         %{name}-1.0.1269-Makefile.patch
+Patch1:         %{name}-1.0.1269-fix-string-format-bug.patch 
 
 BuildRequires:  SDL_image-devel
 BuildRequires:  SDL_mixer-devel
@@ -18,7 +17,7 @@ BuildRequires:  SDL_sound-devel
 BuildRequires:  SDL_ttf-devel
 BuildRequires:  ImageMagick
 BuildRequires:  desktop-file-utils 
-Requires: hicolor-icon-theme
+Requires:       hicolor-icon-theme
 
 
 %description
@@ -30,6 +29,7 @@ running out of time, hitting other cars or running out of fuel.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # Fix char encondig
 iconv --from=ISO-8859-1 --to=UTF-8 readme.txt > readme.txt.utf8
@@ -43,8 +43,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
-
 # Install wrapper script
 install -d %{buildroot}%{_bindir}
 install -m 755 -p %{SOURCE1} %{buildroot}%{_bindir}/%{name}
@@ -68,11 +66,8 @@ convert -resize 32x32 \
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install \
   --dir %{buildroot}%{_datadir}/applications \
+  --set-icon=roadfighter \
   build/linux/%{name}.desktop
-
-
-%clean
-rm -rf %{buildroot}
 
 
 %post
@@ -91,7 +86,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_libexecdir}/%{name}
@@ -101,6 +95,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Sep 30 2014 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-8
+- Fix FTBFS
+- Dropped obsolete Group, Buildroot, %%clean and %%defattr
+- Dropped cleaning at the beginning of %%install
+- Remove extension from Icon in Desktop file
+
 * Sun Aug 31 2014 Sérgio Basto <sergio@serjux.com> - 1.0.1269-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
