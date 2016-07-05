@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Konami's Road Fighter remake
 
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
@@ -10,6 +10,7 @@ Source0:        http://braingames.jorito.net/roadfighter/downloads/%{name}.src_%
 Source1:        roadfighter.sh
 Patch0:         %{name}-1.0.1269-Makefile.patch
 Patch1:         %{name}-1.0.1269-fix-string-format-bug.patch 
+Patch2:         %{name}-1.0.1269-build-fix.patch
 
 BuildRequires:  SDL_image-devel
 BuildRequires:  SDL_mixer-devel
@@ -30,6 +31,7 @@ running out of time, hitting other cars or running out of fuel.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 # Fix char encondig
 iconv --from=ISO-8859-1 --to=UTF-8 readme.txt > readme.txt.utf8
@@ -95,6 +97,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Jul  4 2016 Hans de Goede <j.w.r.degoede@gmail.com> - 1.0.1269-9
+- Fix FTBFS
+- Rebuild for F24
+
 * Tue Sep 30 2014 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-8
 - Fix FTBFS
 - Dropped obsolete Group, Buildroot, %%clean and %%defattr

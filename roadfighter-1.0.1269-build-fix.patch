@@ -1,0 +1,12 @@
+diff -up roadfighter-1.0.1269/src/auxiliar.cpp~ roadfighter-1.0.1269/src/auxiliar.cpp
+--- roadfighter-1.0.1269/src/auxiliar.cpp~	2008-03-18 21:00:21.000000000 +0100
++++ roadfighter-1.0.1269/src/auxiliar.cpp	2016-07-04 23:28:20.105838888 +0200
+@@ -84,7 +84,7 @@ SDL_Surface *load_maskedimage(char *imag
+ 	mask=IMG_Load(name);
+ 
+     if (tmp==0 ||
+-		mask==0) return false;
++		mask==0) return NULL;
+ 
+ 	res=SDL_DisplayFormatAlpha(tmp);
+ 
