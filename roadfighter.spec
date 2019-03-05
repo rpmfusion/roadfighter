@@ -12,6 +12,7 @@ Patch0:         %{name}-1.0.1269-Makefile.patch
 Patch1:         %{name}-1.0.1269-fix-string-format-bug.patch 
 Patch2:         %{name}-1.0.1269-build-fix.patch
 
+BuildRequires:  gcc-c++
 BuildRequires:  SDL_image-devel
 BuildRequires:  SDL_mixer-devel
 BuildRequires:  SDL_sound-devel
