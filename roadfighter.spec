@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        17%{?dist}
+Release:        18%{?dist}
 Summary:        Konami's Road Fighter remake
 
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
@@ -57,13 +57,13 @@ install -d %{buildroot}%{_datadir}/%{name}
 cp -pr fonts graphics maps sound %{buildroot}%{_datadir}/%{name}
 
 # Install icon
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
 convert -resize 48x48 \
   -extent 48x48 \
   -gravity center \
   -background none \
   build/linux/%{name}.png \
-  %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+  %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 
 # Install desktop file
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -84,6 +84,9 @@ desktop-file-install \
 
 
 %changelog
+* Sat Dec 14 2019 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-18
+- Fixed icon directory
+
 * Sat Dec 14 2019 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-17
 - Spec file clean up
 
