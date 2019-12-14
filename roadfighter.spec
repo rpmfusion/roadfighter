@@ -1,13 +1,13 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        16%{?dist}
+Release:        17%{?dist}
 Summary:        Konami's Road Fighter remake
 
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
 License:        Distributable
 URL:            http://roadfighter.jorito.net/
 Source0:        http://braingames.jorito.net/roadfighter/downloads/%{name}.src_%{version}.tgz
-Source1:        roadfighter.sh
+Source1:        %{name}.sh
 Patch0:         %{name}-1.0.1269-Makefile.patch
 Patch1:         %{name}-1.0.1269-fix-string-format-bug.patch 
 Patch2:         %{name}-1.0.1269-build-fix.patch
@@ -41,8 +41,8 @@ mv readme.txt.utf8 readme.txt
 
 
 %build
-export CFLAGS="%{optflags}"
-make %{?_smp_mflags}
+%set_build_flags macro
+%make_build
 
 
 %install
@@ -58,34 +58,20 @@ cp -pr fonts graphics maps sound %{buildroot}%{_datadir}/%{name}
 
 # Install icon
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
-convert -resize 32x32 \
-  -frame 0x3 \
-  -mattecolor '#dfdfdf' \
-  -transparent '#dfdfdf' \
-  build/linux/roadfighter.png \
+convert -resize 48x48 \
+  -extent 48x48 \
+  -gravity center \
+  -background none \
+  build/linux/%{name}.png \
   %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 
 # Install desktop file
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install \
   --dir %{buildroot}%{_datadir}/applications \
-  --set-icon=roadfighter \
+  --set-icon=%{name} \
+  --remove-category=Application \
   build/linux/%{name}.desktop
-
-
-%post
-touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-
-
-%postun
-if [ $1 -eq 0 ] ; then
-    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-
-
-%posttrans
-gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %files
@@ -98,6 +84,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sat Dec 14 2019 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-17
+- Spec file clean up
+
 * Sat Aug 10 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.1269-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
