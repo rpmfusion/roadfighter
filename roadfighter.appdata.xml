@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>roadfighter.desktop</id>
+  <name>Road Fighter</name>
+  <summary>Konami's Road Fighter remake</summary>
+  <developer_name>Brain Games</developer_name>
+  <description>
+  <p>
+   This is a remake of a car-based arcade game developed by Konami and
+   released in 1984. The goal is to reach the finish line within the stages
+   without running out of time, hitting other cars or running out of fuel.
+  </p>
+  </description>
+  <metadata_license>CC-BY-3.0</metadata_license>
+  <project_license>Distributable</project_license>
+  <url type="homepage">https://roadfighter.jorito.net/</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://roadfighter.jorito.net/pics/screenshot1.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>https://roadfighter.jorito.net/pics/screenshot2.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>https://roadfighter.jorito.net/pics/screenshot3.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>https://roadfighter.jorito.net/pics/screenshot4.jpg</image>
+    </screenshot>
+  </screenshots>
+</component>
+

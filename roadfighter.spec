@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        18%{?dist}
+Release:        19%{?dist}
 Summary:        Konami's Road Fighter remake
 
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
@@ -8,6 +8,7 @@ License:        Distributable
 URL:            http://roadfighter.jorito.net/
 Source0:        http://braingames.jorito.net/roadfighter/downloads/%{name}.src_%{version}.tgz
 Source1:        %{name}.sh
+Source2:        %{name}.appdata.xml
 Patch0:         %{name}-1.0.1269-Makefile.patch
 Patch1:         %{name}-1.0.1269-fix-string-format-bug.patch 
 Patch2:         %{name}-1.0.1269-build-fix.patch
@@ -18,7 +19,8 @@ BuildRequires:  SDL_mixer-devel
 BuildRequires:  SDL_sound-devel
 BuildRequires:  SDL_ttf-devel
 BuildRequires:  ImageMagick
-BuildRequires:  desktop-file-utils 
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 Requires:       hicolor-icon-theme
 
 
@@ -41,7 +43,7 @@ mv readme.txt.utf8 readme.txt
 
 
 %build
-%set_build_flags macro
+%set_build_flags
 %make_build
 
 
@@ -73,6 +75,11 @@ desktop-file-install \
   --remove-category=Application \
   build/linux/%{name}.desktop
 
+# Install AppData file
+install -d %{buildroot}%{_metainfodir}
+install -p -m 644 %{SOURCE2} %{buildroot}%{_metainfodir}
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
+
 
 %files
 %{_bindir}/%{name}
@@ -80,10 +87,14 @@ desktop-file-install \
 %{_libexecdir}/%{name}
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
+%{_metainfodir}/%{name}.appdata.xml
 %doc readme.txt
 
 
 %changelog
+* Sat Dec 14 2019 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-19
+- Added AppData file
+
 * Sat Dec 14 2019 Andrea Musuruane <musuruan@gmail.com> - 1.0.1269-18
 - Fixed icon directory
 
