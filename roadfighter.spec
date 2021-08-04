@@ -1,6 +1,6 @@
 Name:           roadfighter
 Version:        1.0.1269
-Release:        22%{?dist}
+Release:        23%{?dist}
 Summary:        Konami's Road Fighter remake
 
 # http://www.braingames.getput.com/forum/forum_posts.asp?TID=678&PN=1
@@ -92,6 +92,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 
 %changelog
+* Wed Aug 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.1269-23
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.0.1269-22
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
