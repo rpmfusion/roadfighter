@@ -32,9 +32,9 @@ running out of time, hitting other cars or running out of fuel.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 # Fix char encondig
 iconv --from=ISO-8859-1 --to=UTF-8 readme.txt > readme.txt.utf8
